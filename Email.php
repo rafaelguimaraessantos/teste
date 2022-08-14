@@ -21,9 +21,9 @@ function smtpmailer($para, $de, $de_nome, $assunto, $corpo) {
 	$mail->IsSMTP();		// Ativar SMTP
 	$mail->SMTPDebug = 1;		// Debugar: 1 = erros e mensagens, 2 = mensagens apenas
 	$mail->SMTPAuth = true;		// Autenticação ativada
-	$mail->SMTPSecure = 'ssl';	// SSL REQUERIDO pelo GMail
-	$mail->Host = 'localhost';	// SMTP utilizado
-	$mail->Port = 465;  		// A porta 587 deverá estar aberta em seu servidor
+	$mail->SMTPSecure = 'tls';	// SSL REQUERIDO pelo GMail
+	$mail->Host = "smtp.gmail.com";	// SMTP utilizado
+	$mail->Port = 587;  		// A porta 587 deverá estar aberta em seu servidor
 	$mail->Username = GUSER;
 	$mail->Password = GPWD;
 	$mail->SetFrom($de, $de_nome);
@@ -40,8 +40,7 @@ function smtpmailer($para, $de, $de_nome, $assunto, $corpo) {
 }
 
 // Insira abaixo o email que irá receber a mensagem, o email que irá enviar (o mesmo da variável GUSER), 
-
-if (smtpmailer('vaireceber@gmail.com', 'seuemail@gmail.com', 'Nome do Enviador', 'Assunto do Email', $Vai)) {
+if (smtpmailer($email, 'seuemail@gmail.com', 'Nome do Enviador', 'Assunto do Email', $Vai)) {
 
 	 header('location: index.php?status=success');
   	exit;
